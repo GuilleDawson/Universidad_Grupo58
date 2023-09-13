@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgrupo58.accesoADatos;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import universidadgrupo58.entidades.Materia;
 
@@ -28,6 +21,7 @@ public class MateriaData {
         
         con=Conexion.getConexion();
     }
+    
     public void guardarMateria(Materia materia){
         
         String sql ="INSERT INTO materia (nombre, año, estado)"
@@ -99,5 +93,46 @@ public class MateriaData {
                     } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla materia");
         }
+    }
+    
+    public void eliminarMateria(int id) {
+        String sql ="UPDATE materia SET estado = 0 WHERE idMateria = ?";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int exito=ps.executeUpdate();
+            if(exito==1){
+                  JOptionPane.showMessageDialog(null,"Materia dada de baja");
+              }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla alumno");
+        }
+        }
+
+    public List<Materia> listarMaterias(){
+        
+        String sql="SELECT idMateria, , nombre, año FROM materia WHERE estado = 1";
+        ArrayList<Materia> materias =new ArrayList<>();
+        try {
+            PreparedStatement ps= con.prepareStatement(sql);
+           
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                
+                Materia materia=new Materia(); 
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setActivo(true);
+                
+                materias.add(materia);
+            } 
+            ps.close(); 
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla materia");
+        }
+        return materias;
     }
 }

@@ -1,10 +1,5 @@
-
 package universidadgrupo58.entidades;
 
-/**
- *
- * @author usuario
- */
 public class Materia {
     
     private int idMateria;
