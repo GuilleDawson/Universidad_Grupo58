@@ -1,2 +1,4 @@
-
-UniversidadGrupo58/nbproject/project.properties
+/build/
+/test/
+/dist/
+/nbproject/private/
