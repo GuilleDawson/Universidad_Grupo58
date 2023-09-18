@@ -25,15 +25,15 @@ public class UniversidadGrupo58 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Alumno juan = new Alumno (1,121212,"Luna", "Jose Pedro", LocalDate.of(1908, 04, 25),true);
-        AlumnoData alu = new AlumnoData();
+        //Alumno juan = new Alumno (1,121212,"Luna", "Jose Pedro", LocalDate.of(1908, 04, 25),true);
+        //AlumnoData alu = new AlumnoData();
         //alu.guardarAlumno(juan);
         //alu.modificarAlumno(juan);
         //alu.eliminarAlumno(1);
-        Alumno alumnoEncontrado=alu.buscarAlumno(1);
-        System.out.println("dni " +alumnoEncontrado.getDni());
-        System.out.println("apellido " +alumnoEncontrado.getApellido());
-        System.out.println("nombre " +alumnoEncontrado.getNombre());
+        //Alumno alumnoEncontrado=alu.buscarAlumno(1);
+        //System.out.println("dni " +alumnoEncontrado.getDni());
+        //System.out.println("apellido " +alumnoEncontrado.getApellido());
+        //System.out.println("nombre " +alumnoEncontrado.getNombre());
 
         //para que aparesca en la ventana//
         //JOptionPane.showMessageDialog(null,"Dni: " +alumnoEncontrado.getDni()+ "\n apellido: " +alumnoEncontrado.getApellido() +"\n nombre: " +alumnoEncontrado.getNombre()); 
