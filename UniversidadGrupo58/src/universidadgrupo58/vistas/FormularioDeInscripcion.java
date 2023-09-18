@@ -1,8 +1,8 @@
 package universidadgrupo58.vistas;
 
-public class formularioDeInscripcion extends javax.swing.JInternalFrame {
+public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
 
-    public formularioDeInscripcion() {
+    public FormularioDeInscripcion() {
         initComponents();
     }
 
