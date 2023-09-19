@@ -59,6 +59,11 @@ public class Main extends javax.swing.JFrame {
 
         jMenu2.setText("Materia");
         jMenu2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         jMenuItem2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jMenuItem2.setText("Formulario de Materia");
@@ -211,6 +216,10 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     public static void main(String args[]) {
         try {

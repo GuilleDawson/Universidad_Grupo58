@@ -2,6 +2,7 @@ package universidadgrupo58.vistas;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import universidadgrupo58.accesoADatos.AlumnoData;
 import universidadgrupo58.entidades.Alumno;
@@ -211,8 +212,9 @@ public class Alumnos extends javax.swing.JInternalFrame {
         alu.setApellido(jTApellido.getText());
         alu.setNombre(jTNombre.getText());
         alu.setDni(Integer.parseInt(jTDocumento.getText()));
-       //me c*go en que no le puedo setear la fecha de nacimiento (gas)
-       //faltaría invocar el método de guardarAlumno con el objeto Alumno dentro (gas)
+        alu.setFechaNac(jDFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        alu.setActivo(jREstado.isEnabled());
+        ad.guardarAlumno(alu);
     }//GEN-LAST:event_jBGuardarActionPerformed
 
 
