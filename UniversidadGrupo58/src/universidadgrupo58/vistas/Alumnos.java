@@ -1,5 +1,11 @@
 package universidadgrupo58.vistas;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import universidadgrupo58.accesoADatos.AlumnoData;
+import universidadgrupo58.entidades.Alumno;
+
 public class Alumnos extends javax.swing.JInternalFrame {
 
     public Alumnos() {
@@ -59,8 +65,18 @@ public class Alumnos extends javax.swing.JInternalFrame {
         });
 
         jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +182,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
     jTApellido.setText("");
     jTDocumento.setText("");
     jREstado.setSelected(false);
-            
+    jDFechaNacimiento.setDate(null);            
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
@@ -174,8 +190,30 @@ public class Alumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        // TODO add your handling code here:
+        AlumnoData ad = new AlumnoData();
+        Alumno alu = ad.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
+        jTApellido.setText(alu.getApellido());
+        jTNombre.setText(alu.getNombre());
+        jREstado.setSelected(alu.isActivo());
+        jDFechaNacimiento.setDate(Date.valueOf(alu.getFechaNac()));
     }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        AlumnoData ad = new AlumnoData();
+        Alumno alu = ad.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
+        ad.eliminarAlumno(alu.getIdAlumno());
+        //funciona, recuerden que es un borrado lógico, estado pasa de true a false (de 1 a 0 en el servidor)
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        AlumnoData ad = new AlumnoData();
+        Alumno alu = new Alumno ();
+        alu.setApellido(jTApellido.getText());
+        alu.setNombre(jTNombre.getText());
+        alu.setDni(Integer.parseInt(jTDocumento.getText()));
+       //me c*go en que no le puedo setear la fecha de nacimiento (gas)
+       //faltaría invocar el método de guardarAlumno con el objeto Alumno dentro (gas)
+    }//GEN-LAST:event_jBGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

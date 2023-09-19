@@ -26,8 +26,9 @@ public class UniversidadGrupo58 {
         // TODO code application logic here
         
         //Alumno juan = new Alumno (1,121212,"Luna", "Jose Pedro", LocalDate.of(1908, 04, 25),true);
+        //Alumno pepe = new Alumno (121213,"Sol","Emerenciano",LocalDate.of(1999, 12, 10),true);
         //AlumnoData alu = new AlumnoData();
-        //alu.guardarAlumno(juan);
+        //alu.guardarAlumno(pepe);
         //alu.modificarAlumno(juan);
         //alu.eliminarAlumno(1);
         //Alumno alumnoEncontrado=alu.buscarAlumno(1);
