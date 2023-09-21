@@ -78,6 +78,11 @@ public class Main extends javax.swing.JFrame {
 
         jMenu3.setText("Administracion");
         jMenu3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
 
         jMenuItem3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jMenuItem3.setText("Manejo de Inscripciones");
@@ -198,13 +203,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        AlumnosXMateria axm = new AlumnosXMateria();
-        axm.setVisible(true);
-        escritorio.add(axm);
-        escritorio.moveToFront(axm);
+        FormularioDeInscripcion fdi = new FormularioDeInscripcion();
+        fdi.setVisible(true);
+        escritorio.add(fdi);
+        escritorio.moveToFront(fdi);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
@@ -220,6 +224,10 @@ public class Main extends javax.swing.JFrame {
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3ActionPerformed
 
     public static void main(String args[]) {
         try {

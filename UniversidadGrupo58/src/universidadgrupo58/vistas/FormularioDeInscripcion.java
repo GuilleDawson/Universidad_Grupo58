@@ -1,9 +1,15 @@
 package universidadgrupo58.vistas;
 
+import java.util.ArrayList;
+import java.util.List;
+import universidadgrupo58.accesoADatos.AlumnoData;
+import universidadgrupo58.entidades.Alumno;
+
 public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
 
     public FormularioDeInscripcion() {
         initComponents();
+        cargarComboBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -14,7 +20,7 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCBAlumnos = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -40,8 +46,6 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
         jLabel1.setText("Formulario de Inscripcion");
 
         jLabel2.setText("Seleccione un alumno:");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Listado de materias");
 
@@ -72,6 +76,11 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
         jButton2.setText("Anular inscripcion");
 
         jButton3.setText("Salir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,7 +99,7 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
                         .addGap(22, 22, 22)
                         .addComponent(jLabel2)
                         .addGap(32, 32, 32)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jCBAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jRadioButton1)
@@ -117,7 +126,7 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCBAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -141,12 +150,16 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Alumno> jCBAlumnos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -157,4 +170,13 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+    private void cargarComboBox(){
+        AlumnoData ad = new AlumnoData();
+        Alumno alu = new Alumno();
+        List <Alumno>alumnos = new ArrayList <>();
+        alumnos = ad.listarAlumnos();
+        for (Alumno alumno: alumnos){
+            jCBAlumnos.addItem(alumno);
+        }
+    }
 }
