@@ -60,7 +60,4 @@ public class Inscripcion {
         String insc=idInscripcion+" "+alumno.getApellido()+", "+alumno.getNombre()+" "+materia.getNombre();
     return insc;
     }
-    
-    
-    
 }

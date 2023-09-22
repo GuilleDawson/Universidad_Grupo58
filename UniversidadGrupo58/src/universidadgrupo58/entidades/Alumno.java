@@ -81,7 +81,6 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return idAlumno + "- " + apellido + ", " + nombre;
+        return idAlumno + "- " + apellido.toUpperCase() + ", " + nombre;
     }
-   
 }
