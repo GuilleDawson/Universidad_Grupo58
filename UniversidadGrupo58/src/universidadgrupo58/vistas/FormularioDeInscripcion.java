@@ -69,8 +69,10 @@ public FormularioDeInscripcion() {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Formulario de Inscripcion");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel2.setText("Seleccione un alumno:");
 
         jCBAlumnos.addActionListener(new java.awt.event.ActionListener() {
@@ -79,10 +81,11 @@ public FormularioDeInscripcion() {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel3.setText("Listado de materias");
 
         buttonGroup1.add(jRSi);
+        jRSi.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jRSi.setText("Materias inscriptas");
         jRSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +94,7 @@ public FormularioDeInscripcion() {
         });
 
         buttonGroup1.add(jRNo);
+        jRNo.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jRNo.setText("Materias No inscriptas");
         jRNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +137,7 @@ public FormularioDeInscripcion() {
             jTabla.getColumnModel().getColumn(2).setResizable(false);
         }
 
+        jBInscribir.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jBInscribir.setText("Inscribir");
         jBInscribir.setEnabled(false);
         jBInscribir.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +146,7 @@ public FormularioDeInscripcion() {
             }
         });
 
+        jBAnular.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jBAnular.setText("Anular inscripcion");
         jBAnular.setEnabled(false);
         jBAnular.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +155,7 @@ public FormularioDeInscripcion() {
             }
         });
 
+        jBSalir.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,7 +168,7 @@ public FormularioDeInscripcion() {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -181,14 +188,15 @@ public FormularioDeInscripcion() {
                                 .addComponent(jRSi)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jRNo))))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jLabel1)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(128, 128, 128)
                 .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -199,9 +207,9 @@ public FormularioDeInscripcion() {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jCBAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -218,7 +226,7 @@ public FormularioDeInscripcion() {
                     .addComponent(jBAnular)
                     .addComponent(jBSalir)
                     .addComponent(jBInscribir))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(40, 40, 40)
