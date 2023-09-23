@@ -55,8 +55,13 @@ public class Materia {
         this.activo = activo;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", anioMateria=" + anioMateria + '}';
+//    }  
+    
     @Override
     public String toString() {
-        return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", anioMateria=" + anioMateria + '}';
-    }    
+        return idMateria + "-" + nombre.toUpperCase() + "(AÑO" + anioMateria +")";
+    }
 }

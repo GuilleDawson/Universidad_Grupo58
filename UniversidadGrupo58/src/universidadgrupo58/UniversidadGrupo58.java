@@ -37,11 +37,11 @@ public class UniversidadGrupo58 {
         //System.out.println("dni " +alumnoEncontrado.getDni());
         //System.out.println("apellido " +alumnoEncontrado.getApellido());
         //System.out.println("nombre " +alumnoEncontrado.getNombre());
-        /*Materia mate = new Materia ("lógica", 5, true);
-        MateriaData md = new MateriaData();
-        md.guardarMateria(mate);
-        Materia mate2 = new Materia ("lógica y epistemología de las ciencias", 5, true);
-        */
+//        Materia mate = new Materia ("lógica1", 5, true);
+//        MateriaData md = new MateriaData();
+//        md.guardarMateria(mate);
+//        Materia mate2 = new Materia ("lógica y dsepistemología de las ciencias", 5, true);
+        
         //para que aparesca en la ventana//
         //JOptionPane.showMessageDialog(null,"Dni: " +alumnoEncontrado.getDni()+ "\n apellido: " +alumnoEncontrado.getApellido() +"\n nombre: " +alumnoEncontrado.getNombre()); 
 

@@ -113,7 +113,7 @@ public class MateriaData {
 
     public List<Materia> listarMaterias(){
         
-        String sql="SELECT idMateria, , nombre, año FROM materia WHERE estado = 1";
+        String sql="SELECT idMateria, nombre, año FROM materia WHERE estado = 1";
         ArrayList<Materia> materias =new ArrayList<>();
         try {
             PreparedStatement ps= con.prepareStatement(sql);
@@ -123,8 +123,8 @@ public class MateriaData {
                 
                 Materia materia=new Materia(); 
                 materia.setIdMateria(rs.getInt("idMateria"));
-                materia.setAnioMateria(rs.getInt("año"));
                 materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
                 materia.setActivo(true);
                 
                 materias.add(materia);
