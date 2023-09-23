@@ -205,10 +205,12 @@ public class Main extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        FormularioDeInscripcion fdi = new FormularioDeInscripcion();
+        AlumnosXMateria fdi = new AlumnosXMateria();
         fdi.setVisible(true);
         escritorio.add(fdi);
         escritorio.moveToFront(fdi);
+
+
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
