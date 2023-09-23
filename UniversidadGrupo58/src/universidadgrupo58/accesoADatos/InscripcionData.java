@@ -29,14 +29,14 @@ public class InscripcionData {
     
   public void guardarInscripcion(Inscripcion insc){
       
-      String sql="INSERT INTO inscripcion(idAlumno,idMateria) VALUES (?,?)";
-      //String sql="INSERT INTO inscripcion(idAlumno,idMateria,nota VALUES (?,?,?)";
+      //String sql="INSERT INTO inscripcion(idAlumno,idMateria) VALUES (?,?)";
+      String sql="INSERT INTO inscripcion(idAlumno,idMateria,nota) VALUES (?,?,?)";
       
         try {
             PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,insc.getAlumno().getIdAlumno());
             ps.setInt(2,insc.getMateria().getIdMateria());
-            //ps.setDouble(3,insc.getNota());
+            ps.setDouble(3,insc.getNota());
             ps.executeUpdate();
             ResultSet rs=ps.getGeneratedKeys();
             if(rs.next()){
@@ -153,7 +153,7 @@ public class InscripcionData {
          
          ArrayList<Materia> materias= new ArrayList<>();
          
-         String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia WHERE inscripcion.idMateria = materia.idMateria AND"
+         String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia WHERE inscripcion.idMateria = materia.idMateria AND "
                  + "inscripcion.idAlumno = ?";
          
         try {
@@ -184,7 +184,7 @@ public class InscripcionData {
          
          ArrayList<Materia> materias= new ArrayList<>();
          
-         String sql = "SELECT * FROM materia WHERE ESTADO = 1 AND idMateria not in (SELECT idMateria FROM inscripcion"
+         String sql = "SELECT * FROM materia WHERE ESTADO = 1 AND idMateria not in (SELECT idMateria FROM inscripcion "
                  + "WHERE idAlumno = ?)";
          
         try {
