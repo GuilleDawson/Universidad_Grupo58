@@ -1,5 +1,6 @@
 package universidadgrupo58.vistas;
 
+import javax.swing.JOptionPane;
 import universidadgrupo58.accesoADatos.MateriaData;
 import universidadgrupo58.entidades.Materia;
 
@@ -34,7 +35,7 @@ public class Materias extends javax.swing.JInternalFrame {
         jLabel1.setText("Materia");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel2.setText("Codigo:");
+        jLabel2.setText("Código:");
 
         jBBuscar.setFont(new java.awt.Font("Arial", 2, 16)); // NOI18N
         jBBuscar.setText("Buscar");
@@ -173,28 +174,38 @@ public class Materias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTAnioActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-    MateriaData md = new MateriaData();
+    try{MateriaData md = new MateriaData();
     Materia mat = md.buscarMateria(Integer.parseInt(jTCodigo.getText()));
     jTNombre.setText(mat.getNombre());
     jTAnio.setText(mat.getAnioMateria()+"");
     jREstado.setSelected(true);
+    }catch(NumberFormatException e){
+        JOptionPane.showMessageDialog(null, "Ingrese un número válido");
+    }
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         MateriaData md = new MateriaData();
-        Materia mat = mat = md.buscarMateria(Integer.parseInt(jTCodigo.getText()));
-        if (mat.getIdMateria()==Integer.parseInt(jTCodigo.getText())){
-        mat.setIdMateria(Integer.parseInt(jTCodigo.getText()));
-        mat.setNombre(jTNombre.getText());
-        mat.setAnioMateria(Integer.parseInt(jTAnio.getText()));
-        mat.setActivo(jREstado.isSelected());
-        md.modificarMateria(mat);
-        }else{
+        try{Materia mat = md.buscarMateria(Integer.parseInt(jTCodigo.getText()));
+                if (mat.getIdMateria() == Integer.parseInt(jTCodigo.getText())){
+                    mat.setAnioMateria(Integer.parseInt(jTAnio.getText()));
+                    mat.setNombre(jTNombre.getText());
+                    mat.setActivo(jREstado.isSelected());
+                    md.modificarMateria(mat);
+                }else{
+                    mat.setAnioMateria(Integer.parseInt(jTAnio.getText()));
+                    mat.setNombre(jTNombre.getText());
+                    mat.setActivo(jREstado.isSelected());
+                    md.guardarMateria(mat);
+                }
+        }catch(NumberFormatException e){
+        Materia mat = new Materia();
         mat.setActivo(jREstado.isSelected());        
         mat.setAnioMateria(Integer.parseInt(jTAnio.getText()));
         mat.setNombre(jTNombre.getText());
         md.guardarMateria(mat);
         }
+        
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed

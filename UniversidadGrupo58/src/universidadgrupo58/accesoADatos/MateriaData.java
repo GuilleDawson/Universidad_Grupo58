@@ -87,7 +87,7 @@ public class MateriaData {
 //así que declaramos 4 variables dinámicas, pero declaramos 3 eh, canchero!
               int exito = ps.executeUpdate();
               if(exito==1){
-                  JOptionPane.showMessageDialog(null,"Materia modificade");
+                  JOptionPane.showMessageDialog(null,"Materia modificada");
               }
                   
                     
