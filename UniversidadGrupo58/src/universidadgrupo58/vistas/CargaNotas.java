@@ -1,9 +1,23 @@
 package universidadgrupo58.vistas;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import universidadgrupo58.accesoADatos.AlumnoData;
+import universidadgrupo58.accesoADatos.InscripcionData;
+
 public class CargaNotas extends javax.swing.JInternalFrame {
+    private final DefaultTableModel model = new DefaultTableModel();
+    AlumnoData alum = new AlumnoData();
 
     public CargaNotas() {
         initComponents();
+        
+        
+        model.addColumn("Código");
+        model.addColumn("Nombre");
+        model.addColumn("Nota");
+        
+        jTable1.setModel(model);
     }
 
     @SuppressWarnings("unchecked")
@@ -22,9 +36,15 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         jLabel1.setText("Carga de Notas");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel2.setText("Seleccione un Alumno");
+        jLabel2.setText("Alumno:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        AlumnoData alum = new AlumnoData();
+
+        jComboBox1.addItem("<Seleccionar Alumno>");
+
+        for(int i = 0; i < alum.listarAlumnos().size(); i++){
+            jComboBox1.addItem(alum.listarAlumnos().get(i).toString());
+        }
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -33,15 +53,21 @@ public class CargaNotas extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Codigo", "Nombre", "Nota"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
@@ -61,22 +87,22 @@ public class CargaNotas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(jButton1)
                         .addGap(52, 52, 52)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(81, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -100,13 +126,32 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        if(jComboBox1.getSelectedItem() != "<Seleccionar Alumno>"){
+            jComboBox1.removeItem("<Seleccionar Alumno>");
+        }
+        
+        InscripcionData ins = new InscripcionData();
+        Object[] datos = new Object[3];
+        
+        for(int i = 0; i <  model.getRowCount(); i++){
+            model.removeRow(i);
+        }
+        
+        for(int i = 0; i < ins.obtenerMateriasCursadas(jComboBox1.getSelectedIndex()).size(); i++){
+            datos[0] = ins.obtenerMateriasCursadas(jComboBox1.getSelectedIndex()).get(i).getIdMateria();
+            datos[1] = ins.obtenerMateriasCursadas(jComboBox1.getSelectedIndex()).get(i).getNombre();
+            //datos[2] = ins.obtenerInscripcionesPorAlumno(alum.listarAlumnos().get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getNota();
+            JOptionPane.showMessageDialog(null, ins.obtenerInscripcionesPorAlumno(1).size());
+            
+            model.addRow(datos);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
