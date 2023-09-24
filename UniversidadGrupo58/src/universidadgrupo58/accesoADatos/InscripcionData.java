@@ -164,7 +164,7 @@ public class InscripcionData {
         
         while (rs.next()) {
             Inscripcion insc = new Inscripcion();
-            insc.setIdInscripcion(rs.getInt("idInscripcion"));
+            insc.setIdInscripcion(rs.getInt("idInscripto"));
             Alumno alu = ad.buscarAlumno(rs.getInt("idAlumno"));
             Materia mat = md.buscarMateria(rs.getInt("idMateria"));
             insc.setAlumno(alu);

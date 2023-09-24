@@ -149,8 +149,8 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         for(int i = 0; i < ins.obtenerMateriasCursadas(jComboBox1.getSelectedIndex()).size(); i++){
             datos[0] = ins.obtenerMateriasCursadas(jComboBox1.getSelectedIndex()).get(i).getIdMateria();
             datos[1] = ins.obtenerMateriasCursadas(jComboBox1.getSelectedIndex()).get(i).getNombre();
-            //datos[2] = ins.obtenerInscripcionesPorAlumno(alum.listarAlumnos().get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getNota();
-            JOptionPane.showMessageDialog(null, ins.obtenerInscripcionesPorAlumno(1).size());
+            datos[2] = ins.obtenerInscripcionesPorAlumno(alum.listarAlumnos().get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getNota();
+            //JOptionPane.showMessageDialog(null, ins.obtenerInscripcionesPorAlumno(1).size());
             
             //agregar modelo a la tabla
             model.addRow(datos);
