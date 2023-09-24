@@ -119,6 +119,8 @@ public class InscripcionData {
         return cursadas;
   }
   
+
+  
   public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
     ArrayList<Inscripcion> cursadas = new ArrayList<>();
     String sql = "SELECT * FROM inscripcion WHERE idAlumno = ?";

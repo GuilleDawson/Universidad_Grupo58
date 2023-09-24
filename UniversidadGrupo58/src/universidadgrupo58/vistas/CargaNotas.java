@@ -1,13 +1,17 @@
 package universidadgrupo58.vistas;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo58.accesoADatos.AlumnoData;
 import universidadgrupo58.accesoADatos.InscripcionData;
+import universidadgrupo58.entidades.Alumno;
 
 public class CargaNotas extends javax.swing.JInternalFrame {
     private final DefaultTableModel model = new DefaultTableModel();
     AlumnoData alum = new AlumnoData();
+    List <Alumno> alumnos = new ArrayList();
 
     public CargaNotas() {
         initComponents();
@@ -131,9 +135,18 @@ public class CargaNotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+        
         // Elimina el item <Seleccionar alumnos> cuando se selecciona otro item
         if(jComboBox1.getSelectedItem() != "<Seleccionar Alumno>"){
             jComboBox1.removeItem("<Seleccionar Alumno>");
+        }
+        
+        alumnos.clear();
+
+        for(int i = 0; i < jComboBox1.getItemCount(); i++){
+            alumnos.add(alum.listarAlumnos().get(i));
+            //JOptionPane.showMessageDialog(null, jComboBox1.getItemCount());
         }
         
         //Declaración de variables y valores
@@ -146,15 +159,18 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         }
         
         //Cargar datos de materias cursadas de cada alumno en la lista
-        for(int i = 0; i < ins.obtenerMateriasCursadas(jComboBox1.getSelectedIndex()).size(); i++){
-            datos[0] = ins.obtenerMateriasCursadas(jComboBox1.getSelectedIndex()).get(i).getIdMateria();
-            datos[1] = ins.obtenerMateriasCursadas(jComboBox1.getSelectedIndex()).get(i).getNombre();
-            datos[2] = ins.obtenerInscripcionesPorAlumno(alum.listarAlumnos().get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getNota();
-            //JOptionPane.showMessageDialog(null, ins.obtenerInscripcionesPorAlumno(1).size());
+        
+        //puede que necesite dos ciclos for
+        
+         for(int j = 0; j < ins.obtenerMateriasCursadas(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).size(); j++){
+            datos[0] = ins.obtenerMateriasCursadas(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(j).getIdMateria();
+            datos[1] = ins.obtenerMateriasCursadas(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(j).getNombre();
+            datos[2] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(j).getNota();
+                
+             //agregar modelo a la tabla
+             model.addRow(datos);
             
-            //agregar modelo a la tabla
-            model.addRow(datos);
-        }
+         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
