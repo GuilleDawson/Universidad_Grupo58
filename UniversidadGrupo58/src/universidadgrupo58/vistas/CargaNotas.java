@@ -9,8 +9,20 @@ import universidadgrupo58.accesoADatos.InscripcionData;
 import universidadgrupo58.entidades.Alumno;
 
 public class CargaNotas extends javax.swing.JInternalFrame {
-    private final DefaultTableModel model = new DefaultTableModel();
+    private final DefaultTableModel model = new DefaultTableModel(){
+        
+        //Método sobreescrito que sirve para indicar cuál celda es editable
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            //Devuelve TRUE si la columna seleccionada es la 2, si es así, permitirá su edición, caso contrario no podrá ser editada esa columna.
+            return column == 2;
+        }
+        
+    };
+    
+    //Declaración de variable alum para usar los métodos de AlumData
     AlumnoData alum = new AlumnoData();
+    //Lista que servirá para guardar los alumnos del jComboBox1 para utilizarlos más adelante
     List <Alumno> alumnos = new ArrayList();
 
     public CargaNotas() {
@@ -77,6 +89,11 @@ public class CargaNotas extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jButton2.setText("Salir");
@@ -136,7 +153,7 @@ public class CargaNotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        //Verifica si el item seleccionado es <Seleccionar Alumno>
+        //Verifica si el item seleccionado es diferente a <Seleccionar Alumno>
         if (jComboBox1.getSelectedItem() != "<Seleccionar Alumno>") {
             //Elimina el item <Seleccionar alumnos> cuando se selecciona otro item distinto a este
             jComboBox1.removeItem("<Seleccionar Alumno>");
@@ -170,6 +187,19 @@ public class CargaNotas extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Declaración de variables
+        InscripcionData ins = new InscripcionData();
+        double nota;
+        
+        //Corroborary actualiza todas las notas del alumno para evitar errores
+        for(int i = 0; i < ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).size(); i++){
+            nota = Double.parseDouble(this.jTable1.getValueAt(i, 2).toString());
+            ins.actualizarNota(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno(), ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getMateria().getIdMateria(), nota);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
