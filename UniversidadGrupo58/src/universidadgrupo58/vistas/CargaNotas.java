@@ -154,18 +154,15 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         Object[] datos = new Object[3];
         
         //Eliminar datos de la tabla
-        for(int i = 0; i <  model.getRowCount(); i++){
-            model.removeRow(i);
+        while(model.getRowCount() != 0){
+            model.removeRow(0);
         }
         
         //Cargar datos de materias cursadas de cada alumno en la lista
-        
-        //puede que necesite dos ciclos for
-        
-         for(int j = 0; j < ins.obtenerMateriasCursadas(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).size(); j++){
-            datos[0] = ins.obtenerMateriasCursadas(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(j).getIdMateria();
-            datos[1] = ins.obtenerMateriasCursadas(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(j).getNombre();
-            datos[2] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(j).getNota();
+         for(int i = 0; i < ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).size(); i++){
+             datos[0] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getMateria().getIdMateria();
+             datos[1] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getMateria().getNombre();
+             datos[2] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getNota();
                 
              //agregar modelo a la tabla
              model.addRow(datos);
