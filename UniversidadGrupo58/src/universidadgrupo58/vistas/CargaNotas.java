@@ -16,11 +16,12 @@ public class CargaNotas extends javax.swing.JInternalFrame {
     public CargaNotas() {
         initComponents();
         
-        // Agregar las columnas a la tabla
+        //Agrega columnas al model para luego aplicarlas a la tabla
         model.addColumn("Código");
         model.addColumn("Nombre");
         model.addColumn("Nota");
         
+        //Carga el model a la tabla
         jTable1.setModel(model);
     }
 
@@ -135,39 +136,39 @@ public class CargaNotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-
-        
-        // Elimina el item <Seleccionar alumnos> cuando se selecciona otro item
-        if(jComboBox1.getSelectedItem() != "<Seleccionar Alumno>"){
+        //Verifica si el item seleccionado es <Seleccionar Alumno>
+        if (jComboBox1.getSelectedItem() != "<Seleccionar Alumno>") {
+            //Elimina el item <Seleccionar alumnos> cuando se selecciona otro item distinto a este
             jComboBox1.removeItem("<Seleccionar Alumno>");
-        }
-        
-        alumnos.clear();
 
-        for(int i = 0; i < jComboBox1.getItemCount(); i++){
-            alumnos.add(alum.listarAlumnos().get(i));
-            //JOptionPane.showMessageDialog(null, jComboBox1.getItemCount());
+            //Elimina todos los datos cargados en la lista de alumnos
+            alumnos.clear();
+
+            //Agrega alumnos existentes en una lista que nos servirá para acceder a el ID y utilizarlo en otros métodos
+            for (int i = 0; i < jComboBox1.getItemCount(); i++) {
+                alumnos.add(alum.listarAlumnos().get(i));
+            }
+
+            //Declaración de variables y valores
+            InscripcionData ins = new InscripcionData();
+            Object[] datos = new Object[3];
+
+            //Elimina todos los datos existentes de la tabla para cargar los nuevos
+            while (model.getRowCount() != 0) {
+                model.removeRow(0);
+            }
+
+            //Carga datos en un arreglo para luego actualizar la tabla con los valores aquí guardados
+            for (int i = 0; i < ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).size(); i++) {
+                datos[0] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getMateria().getIdMateria();
+                datos[1] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getMateria().getNombre();
+                datos[2] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getNota();
+
+                //Actualiza la tabla
+                model.addRow(datos);
+
+            }
         }
-        
-        //Declaración de variables y valores
-        InscripcionData ins = new InscripcionData();
-        Object[] datos = new Object[3];
-        
-        //Eliminar datos de la tabla
-        while(model.getRowCount() != 0){
-            model.removeRow(0);
-        }
-        
-        //Cargar datos de materias cursadas de cada alumno en la lista
-         for(int i = 0; i < ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).size(); i++){
-             datos[0] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getMateria().getIdMateria();
-             datos[1] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getMateria().getNombre();
-             datos[2] = ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getNota();
-                
-             //agregar modelo a la tabla
-             model.addRow(datos);
-            
-         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
