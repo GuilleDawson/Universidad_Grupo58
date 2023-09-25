@@ -196,7 +196,14 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         //Corroborary actualiza todas las notas del alumno para evitar errores
         for(int i = 0; i < ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).size(); i++){
             nota = Double.parseDouble(this.jTable1.getValueAt(i, 2).toString());
-            ins.actualizarNota(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno(), ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getMateria().getIdMateria(), nota);
+            
+            //Verifica que la nota sea correcta
+            //Si es así la guarda, de lo contrario envía un mensaje de error y no guarda la nota.
+            if(nota <= 10 && nota >= 0){
+                ins.actualizarNota(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno(), ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getMateria().getIdMateria(), nota);
+            } else {
+                JOptionPane.showMessageDialog(null, "Nota fuera de rango");
+            }
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
