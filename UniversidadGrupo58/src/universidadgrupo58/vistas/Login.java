@@ -94,10 +94,19 @@ public class Login extends javax.swing.JInternalFrame {
 
     private void jBIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresarActionPerformed
        AdminData ada = new AdminData();
-       admin = ada.buscarAdmin(jTUsuario.getText(), jPContrasenia.getText());
+       admin = ada.buscarAdminA(jTUsuario.getText(), jPContrasenia.getText());
        if (admin.isLevelAdmin()){
            JOptionPane.showMessageDialog(null, "Bienvenido Administrador");
            this.dispose();
+       }else if (!admin.isLevelAdmin()){
+           admin = ada.buscarAdminB(jTUsuario.getText(), jPContrasenia.getText());
+           }
+       if (admin.isLevelAlu() && !admin.isLevelAdmin()){
+           JOptionPane.showMessageDialog(null, "Bienvenido alumno");
+           this.dispose();
+       }
+       if (!admin.isLevelAdmin() && !admin.isLevelAlu()){
+       JOptionPane.showMessageDialog(null, "Usuario no encontrado");
        }
     }//GEN-LAST:event_jBIngresarActionPerformed
 
