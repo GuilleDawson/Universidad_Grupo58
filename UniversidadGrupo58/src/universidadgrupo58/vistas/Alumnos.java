@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 import universidadgrupo58.accesoADatos.AlumnoData;
 import universidadgrupo58.entidades.Alumno;
 
@@ -218,13 +219,28 @@ public class Alumnos extends javax.swing.JInternalFrame {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         AlumnoData ad = new AlumnoData();
-        Alumno alu = new Alumno ();
+        Alumno alu = ad.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
+        try{
+        if (alu.getDni() == (Integer.parseInt(jTDocumento.getText()))){    
         alu.setApellido(jTApellido.getText());
         alu.setNombre(jTNombre.getText());
         alu.setDni(Integer.parseInt(jTDocumento.getText()));
         alu.setFechaNac(jDFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         alu.setActivo(jREstado.isEnabled());
-        ad.guardarAlumno(alu);
+        ad.modificarAlumno(alu);
+        }else{
+            alu.setActivo(jREstado.isSelected());
+            alu.setApellido(jTApellido.getText());
+            alu.setNombre(jTNombre.getText());
+            alu.setDni(Integer.parseInt(jTDocumento.getText()));
+            alu.setFechaNac(jDFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            ad.guardarAlumno(alu);
+        }
+        }catch(NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null, "Ingrese un valor numérico valido");
+        }catch(NullPointerException npe){
+            
+        }   
     }//GEN-LAST:event_jBGuardarActionPerformed
 
 

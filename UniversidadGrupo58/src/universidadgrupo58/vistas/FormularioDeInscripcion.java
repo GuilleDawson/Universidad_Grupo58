@@ -321,7 +321,7 @@ public FormularioDeInscripcion() {
         AlumnoData ad = new AlumnoData();
         Alumno alu = new Alumno();
         List <Alumno>alumnos = new ArrayList <>();
-        alumnos = ad.listarAlumnos();
+        alumnos = ad.listarAlumnosAlu();
         for (Alumno alumno: alumnos){
             jCBAlumnos.addItem(alumno);
         }

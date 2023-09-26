@@ -198,7 +198,7 @@ public class Materias extends javax.swing.JInternalFrame {
                     mat.setActivo(jREstado.isSelected());
                     md.guardarMateria(mat);
                 }
-        }catch(NumberFormatException e){
+        }catch(NumberFormatException nfe){
         Materia mat = new Materia();
         mat.setActivo(jREstado.isSelected());        
         mat.setAnioMateria(Integer.parseInt(jTAnio.getText()));

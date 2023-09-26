@@ -44,16 +44,16 @@ public class Main extends javax.swing.JFrame {
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(243, 243, 243)
+                .addGap(434, 434, 434)
                 .addComponent(jBLogin)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(438, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(189, 189, 189)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addContainerGap(406, Short.MAX_VALUE)
                 .addComponent(jBLogin)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGap(223, 223, 223))
         );
 
         jMenu1.setText("Alumno");
