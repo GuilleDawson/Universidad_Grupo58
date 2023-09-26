@@ -169,6 +169,8 @@ public class AlumnoData {
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla alumno");
+        } catch (NullPointerException npe){
+            
         }
         return alumnos;
     }
