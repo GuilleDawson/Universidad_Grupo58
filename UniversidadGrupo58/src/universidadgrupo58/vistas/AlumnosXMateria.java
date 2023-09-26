@@ -58,6 +58,7 @@ public class AlumnosXMateria extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTAlumnos.setEnabled(false);
         jScrollPane1.setViewportView(jTAlumnos);
 
         jBSalir.setText("Salir");
