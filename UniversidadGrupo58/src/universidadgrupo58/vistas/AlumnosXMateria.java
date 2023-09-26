@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo58.accesoADatos.AlumnoData;
+import universidadgrupo58.accesoADatos.InscripcionData;
 import universidadgrupo58.accesoADatos.MateriaData;
 import universidadgrupo58.entidades.Alumno;
 import universidadgrupo58.entidades.Materia;
 
 public class AlumnosXMateria extends javax.swing.JInternalFrame {
 
+   
+    private InscripcionData inscData;
+    
     private DefaultTableModel modelo;
     public AlumnosXMateria() {
         initComponents();
         modelo = new DefaultTableModel();
+        inscData = new InscripcionData();
         cargarComboBox();
         armarCabecera();
         
@@ -109,7 +114,8 @@ public class AlumnosXMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jCBMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBMateriasActionPerformed
-    borrarFilaTabla(); 
+    borrarFilaTabla();
+    cargaDatosAlumnosInscriptos();
     
     }//GEN-LAST:event_jCBMateriasActionPerformed
 
@@ -152,4 +158,15 @@ private void borrarFilaTabla(){
             modelo.removeRow(i); 
         }
     }
+
+
+        private void cargaDatosAlumnosInscriptos(){
+        Materia selec = (Materia)jCBMaterias.getSelectedItem();
+        List<Alumno> lista = inscData.obtenerAlumnosXMateria(selec.getIdMateria());
+        for(Alumno a: lista) {
+            modelo.addRow(new Object[]{a.getIdAlumno(),a.getDni(),a.getApellido(),a.getNombre()});
+        }  
+        }
 }
+
+
