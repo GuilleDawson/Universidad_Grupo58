@@ -1,6 +1,9 @@
 package universidadgrupo58.vistas;
 
+import javax.swing.JOptionPane;
+import universidadgrupo58.entidades.Admin;
 public class Main extends javax.swing.JFrame {
+    public Admin admin = Login.admin;
 
     public Main() {
         initComponents();
@@ -11,6 +14,7 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        jBLogin = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -26,15 +30,30 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jBLogin.setText("Login");
+        jBLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLoginActionPerformed(evt);
+            }
+        });
+
+        escritorio.setLayer(jBLogin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(243, 243, 243)
+                .addComponent(jBLogin)
+                .addContainerGap(270, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(189, 189, 189)
+                .addComponent(jBLogin)
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Alumno");
@@ -107,6 +126,11 @@ public class Main extends javax.swing.JFrame {
 
         jMenu4.setText("Consultas");
         jMenu4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
 
         jMenuItem5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jMenuItem5.setText("Alumnos por Materia");
@@ -164,52 +188,67 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        if (admin.isLevelAdmin()){
         escritorio.removeAll();
         escritorio.repaint();
         Alumnos alu = new Alumnos();
         alu.setVisible(true);
         escritorio.add(alu);
         escritorio.moveToFront(alu);
+        }else{
+            JOptionPane.showMessageDialog(null, "No tiene el rango necesario");
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        escritorio.removeAll();
+        if (admin.isLevelAdmin()){
+            escritorio.removeAll();
         escritorio.repaint();
         Materias mat = new Materias();
         mat.setVisible(true);
         escritorio.add(mat);
         escritorio.moveToFront(mat);
-        
+    }else{
+    JOptionPane.showMessageDialog(null, "No tiene el rango necesario");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
+    }
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        if (admin.isLevelAlu()){
         escritorio.removeAll();
         escritorio.repaint();
         FormularioDeInscripcion form = new FormularioDeInscripcion();
         form.setVisible(true);
         escritorio.add(form);
         escritorio.moveToFront(form);
+        }else{
+    JOptionPane.showMessageDialog(null, "No tiene el rango necesario");
+    }                   
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+         if (admin.isLevelAdmin()){
         escritorio.removeAll();
         escritorio.repaint();
         CargaNotas nota = new CargaNotas();
         nota.setVisible(true);
         escritorio.add(nota);
         escritorio.moveToFront(nota);
+        }else{
+    JOptionPane.showMessageDialog(null, "No tiene el rango necesario");
+         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        if (admin.isLevelAdmin()){
         escritorio.removeAll();
         escritorio.repaint();
         AlumnosXMateria fdi = new AlumnosXMateria();
         fdi.setVisible(true);
         escritorio.add(fdi);
         escritorio.moveToFront(fdi);
-
+        }else{
+    JOptionPane.showMessageDialog(null, "No tiene el rango necesario");
+         }
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -230,6 +269,19 @@ public class Main extends javax.swing.JFrame {
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jBLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLoginActionPerformed
+escritorio.removeAll();
+        escritorio.repaint();
+        Login login = new Login();
+        login.setVisible(true);
+        escritorio.add(login);
+        escritorio.moveToFront(login);        
+    }//GEN-LAST:event_jBLoginActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -258,6 +310,7 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JButton jBLogin;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
