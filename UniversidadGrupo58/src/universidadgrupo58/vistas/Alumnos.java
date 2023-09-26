@@ -219,7 +219,8 @@ public class Alumnos extends javax.swing.JInternalFrame {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         AlumnoData ad = new AlumnoData();
-        Alumno alu = ad.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
+        Alumno alu = new Alumno();
+        alu = ad.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
         try{
         if (alu.getDni() == (Integer.parseInt(jTDocumento.getText()))){    
         alu.setApellido(jTApellido.getText());
@@ -228,18 +229,20 @@ public class Alumnos extends javax.swing.JInternalFrame {
         alu.setFechaNac(jDFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         alu.setActivo(jREstado.isEnabled());
         ad.modificarAlumno(alu);
-        }else{
-            alu.setActivo(jREstado.isSelected());
-            alu.setApellido(jTApellido.getText());
-            alu.setNombre(jTNombre.getText());
-            alu.setDni(Integer.parseInt(jTDocumento.getText()));
-            alu.setFechaNac(jDFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            ad.guardarAlumno(alu);
         }
+        //if(alu.getDni() != (Integer.parseInt(jTDocumento.getText()))){
+            
+        //}
         }catch(NumberFormatException nfe){
             JOptionPane.showMessageDialog(null, "Ingrese un valor numérico valido");
         }catch(NullPointerException npe){
-            
+            Alumno alu2 = new Alumno();
+            alu2.setActivo(jREstado.isSelected());
+            alu2.setApellido(jTApellido.getText());
+            alu2.setNombre(jTNombre.getText());
+            alu2.setDni(Integer.parseInt(jTDocumento.getText()));
+            alu2.setFechaNac(jDFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            ad.guardarAlumno(alu2);
         }   
     }//GEN-LAST:event_jBGuardarActionPerformed
 
