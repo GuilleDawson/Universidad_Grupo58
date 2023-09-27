@@ -207,11 +207,13 @@ public class Alumnos extends javax.swing.JInternalFrame {
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         AlumnoData ad = new AlumnoData();
+        try{
         Alumno alu = ad.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
         jTApellido.setText(alu.getApellido());
         jTNombre.setText(alu.getNombre());
         jREstado.setSelected(alu.isActivo());
         jDFechaNacimiento.setDate(Date.valueOf(alu.getFechaNac()));
+        }catch (NullPointerException npe){}
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
