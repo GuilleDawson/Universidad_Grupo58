@@ -45,7 +45,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -69,7 +69,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="59" max="32767" attributes="0"/>
+                      <EmptySpace pref="58" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jRSi" min="-2" max="-2" attributes="0"/>
@@ -93,7 +93,7 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="jSeparator2" alignment="1" pref="497" max="32767" attributes="0"/>
+              <Component id="jSeparator2" alignment="1" pref="495" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,13 +122,13 @@
                   <Component id="jBSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBInscribir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="345" max="32767" attributes="0"/>
+                  <EmptySpace pref="340" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>

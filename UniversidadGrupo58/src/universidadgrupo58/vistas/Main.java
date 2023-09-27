@@ -47,17 +47,17 @@ public class Main extends javax.swing.JFrame {
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addGap(303, 303, 303)
                 .addComponent(jBLogin)
-                .addContainerGap(333, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addGap(209, 209, 209)
                 .addComponent(jBLogin)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
-        jMenu1.setText(" Alumnos      ");
+        jMenu1.setText(" Alumnos     ");
         jMenu1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +77,7 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Materia      ");
+        jMenu2.setText("Materia     ");
         jMenu2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jMenu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +96,7 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Administracion    ");
+        jMenu3.setText("Administracion     ");
         jMenu3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +152,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jMenuItem6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jMenuItem6.setText("Salir");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,11 +169,11 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(escritorio)
         );
 
         pack();
