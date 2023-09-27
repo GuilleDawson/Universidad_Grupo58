@@ -199,11 +199,16 @@ public class Materias extends javax.swing.JInternalFrame {
                     md.guardarMateria(mat);
                 }
         }catch(NumberFormatException nfe){
+            try{
         Materia mat = new Materia();
         mat.setActivo(jREstado.isSelected());        
         mat.setAnioMateria(Integer.parseInt(jTAnio.getText()));
         mat.setNombre(jTNombre.getText());
         md.guardarMateria(mat);
+            } catch (NumberFormatException nfe2){
+            JOptionPane.showMessageDialog(null, "Ingrese un número válido");
+            }
+            
         }
         
     }//GEN-LAST:event_jBGuardarActionPerformed
@@ -217,9 +222,12 @@ public class Materias extends javax.swing.JInternalFrame {
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         MateriaData md = new MateriaData();
+        try{
         Materia mat = md.buscarMateria(Integer.parseInt(jTCodigo.getText()));
         md.eliminarMateria(mat.getIdMateria());
-        
+        } catch (NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null, "Ingrese un número válido");
+        }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
 

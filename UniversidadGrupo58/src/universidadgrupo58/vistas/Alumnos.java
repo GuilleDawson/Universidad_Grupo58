@@ -209,7 +209,11 @@ public class Alumnos extends javax.swing.JInternalFrame {
         jTNombre.setText(alu.getNombre());
         jREstado.setSelected(alu.isActivo());
         jDFechaNacimiento.setDate(Date.valueOf(alu.getFechaNac()));
-        }catch (NullPointerException npe){}
+        }catch (NullPointerException npe){
+        }catch (NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null, "El dni debe ser un valor numérico");
+            jTDocumento.setText("");
+        }        
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -222,8 +226,8 @@ public class Alumnos extends javax.swing.JInternalFrame {
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         AlumnoData ad = new AlumnoData();
         Alumno alu = new Alumno();
-        alu = ad.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
         try{
+        alu = ad.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
         if (alu.getDni() == (Integer.parseInt(jTDocumento.getText()))){    
         alu.setApellido(jTApellido.getText());
         alu.setNombre(jTNombre.getText());
@@ -236,8 +240,9 @@ public class Alumnos extends javax.swing.JInternalFrame {
             
         //}
         }catch(NumberFormatException nfe){
-            JOptionPane.showMessageDialog(null, "Ingrese un valor numérico valido");
+            JOptionPane.showMessageDialog(null, "El dni debe ser un valor numérico");
         }catch(NullPointerException npe){
+            try{
             Alumno alu2 = new Alumno();
             alu2.setActivo(jREstado.isSelected());
             alu2.setApellido(jTApellido.getText());
@@ -245,6 +250,9 @@ public class Alumnos extends javax.swing.JInternalFrame {
             alu2.setDni(Integer.parseInt(jTDocumento.getText()));
             alu2.setFechaNac(jDFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             ad.guardarAlumno(alu2);
+            }catch (NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null, "El dni debe ser un valor numérico");
+            }
         }   
     }//GEN-LAST:event_jBGuardarActionPerformed
 
