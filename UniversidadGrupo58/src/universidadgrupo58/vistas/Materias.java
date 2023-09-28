@@ -182,7 +182,7 @@ public class Materias extends javax.swing.JInternalFrame {
     Materia mat = md.buscarMateria(Integer.parseInt(jTCodigo.getText()));
     jTNombre.setText(mat.getNombre());
     jTAnio.setText(mat.getAnioMateria()+"");
-    jREstado.setSelected(true);
+    jREstado.setSelected(mat.isActivo());
     }catch(NumberFormatException e){
         JOptionPane.showMessageDialog(null, "Ingrese un número válido");
     }
