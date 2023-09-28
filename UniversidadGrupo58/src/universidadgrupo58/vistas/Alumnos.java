@@ -214,11 +214,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jREstadoActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-    jTNombre.setText("");
-    jTApellido.setText("");
-    jTDocumento.setText("");
-    jREstado.setSelected(false);
-    jDFechaNacimiento.setDate(null);            
+        Limpiar();
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
@@ -237,7 +233,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
         }catch (NumberFormatException nfe){
             JOptionPane.showMessageDialog(null, "El dni debe ser un valor numérico");
             jTDocumento.setText("");
-        }        
+        }     
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -245,6 +241,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
         Alumno alu = ad.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
         ad.eliminarAlumno(alu.getIdAlumno());
         //funciona, recuerden que es un borrado lógico, estado pasa de true a false (de 1 a 0 en el servidor)
+        Limpiar();
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
@@ -278,6 +275,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "El dni debe ser un valor numérico");
             }
         }   
+        Limpiar();
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jTApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTApellidoActionPerformed
@@ -304,4 +302,13 @@ public class Alumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTDocumento;
     private javax.swing.JTextField jTNombre;
     // End of variables declaration//GEN-END:variables
+
+private void Limpiar(){
+    jTNombre.setText("");
+    jTApellido.setText("");
+    jTDocumento.setText("");
+    jREstado.setSelected(false);
+    jDFechaNacimiento.setDate(null); 
+}
+
 }

@@ -214,14 +214,11 @@ public class Materias extends javax.swing.JInternalFrame {
             }
             
         }
-        
+        Limpiar();
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        jTCodigo.setText("");
-        jTNombre.setText("");
-        jTAnio.setText("");
-        jREstado.setSelected(false);
+        Limpiar();
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -232,6 +229,7 @@ public class Materias extends javax.swing.JInternalFrame {
         } catch (NumberFormatException nfe){
             JOptionPane.showMessageDialog(null, "Ingrese un número válido");
         }
+        Limpiar();
     }//GEN-LAST:event_jBEliminarActionPerformed
 
 
@@ -252,4 +250,14 @@ public class Materias extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTCodigo;
     private javax.swing.JTextField jTNombre;
     // End of variables declaration//GEN-END:variables
+
+
+private void Limpiar(){
+        jTCodigo.setText("");
+        jTNombre.setText("");
+        jTAnio.setText("");
+        jREstado.setSelected(false);
+}
+
+
 }
