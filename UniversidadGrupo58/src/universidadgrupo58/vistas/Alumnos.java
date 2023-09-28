@@ -249,6 +249,10 @@ public class Alumnos extends javax.swing.JInternalFrame {
         Alumno alu = new Alumno();
         try{
         alu = ad.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
+        if (jTApellido.getText().isEmpty()||jTNombre.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+            return;
+        }
         if (alu.getDni() == (Integer.parseInt(jTDocumento.getText()))){    
         alu.setApellido(jTApellido.getText());
         alu.setNombre(jTNombre.getText());
