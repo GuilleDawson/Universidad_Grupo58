@@ -50,7 +50,7 @@ public class AlumnoData {
     
     public void modificarAlumno (Alumno alumno) {
         
-        String sql = "UPDATE alumno SET dni= ?, apellido= ?, nombre= ?, fechaNAcimiento= ? WHERE idAlumno = ?"; 
+        String sql = "UPDATE alumno SET dni= ?, apellido= ?, nombre= ?, fechaNAcimiento= ?, estado= ? WHERE idAlumno = ?"; 
         
         try {
             PreparedStatement ps= con.prepareStatement(sql);
@@ -58,7 +58,8 @@ public class AlumnoData {
               ps.setString(2, alumno.getApellido());
               ps.setString(3, alumno.getNombre());
               ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
-              ps.setInt(5, alumno.getIdAlumno());
+              ps.setBoolean(5, alumno.isActivo());
+              ps.setInt(6, alumno.getIdAlumno());
               int exito = ps.executeUpdate();
               if(exito==1){
                   JOptionPane.showMessageDialog(null,"Alumno modificado");
@@ -88,7 +89,7 @@ public class AlumnoData {
     
     public Alumno buscarAlumno(int id){
         
-        String sql="SELECT dni, apellido, nombre, fechaNAcimiento FROM alumno WHERE idAlumno = ? AND estado = 1";
+        String sql="SELECT dni, apellido, nombre, fechaNAcimiento, estado FROM alumno WHERE idAlumno = ?";// AND estado = 1";
         Alumno alumno =null;
         try {
             PreparedStatement ps= con.prepareStatement(sql);
@@ -102,7 +103,7 @@ public class AlumnoData {
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
-                alumno.setActivo(true);
+                alumno.setActivo(ttb(rs.getInt("estado")));
             } else {
                JOptionPane.showMessageDialog(null,"No existe ese alumno"); 
             }
@@ -116,7 +117,7 @@ public class AlumnoData {
     
     public Alumno buscarAlumnoPorDni(int dni){
         
-        String sql="SELECT idAlumno, dni, apellido, nombre, fechaNAcimiento FROM alumno WHERE dni = ? AND estado = 1";
+        String sql="SELECT idAlumno, dni, apellido, nombre, fechaNAcimiento, estado FROM alumno WHERE dni = ?"; // AND estado = 1";
         Alumno alumno =null;
         try {
             PreparedStatement ps= con.prepareStatement(sql);
@@ -130,7 +131,7 @@ public class AlumnoData {
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
-                alumno.setActivo(true);
+                alumno.setActivo(ttb(rs.getInt("estado")));
             } else {
                JOptionPane.showMessageDialog(null,"No existe ese alumno"); 
             }
@@ -145,7 +146,7 @@ public class AlumnoData {
     
     public List<Alumno> listarAlumnosAlu(){
     //modificado para mostrar solamente el alumno logueado en la pagina. Anterior "...WHERE estado =1"->DEL 151+153+154    
-        String sql="SELECT idAlumno, dni, apellido, nombre, fechaNAcimiento FROM alumno WHERE dni = ? AND apellido = ?";
+        String sql="SELECT idAlumno, dni, apellido, nombre, fechaNAcimiento, estado FROM alumno WHERE dni = ? AND apellido = ?";
         ArrayList<Alumno> alumnos =new ArrayList<>();
         try {
             int pw = Integer.parseInt(Login.admin.getPassword());
@@ -161,7 +162,7 @@ public class AlumnoData {
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
-                alumno.setActivo(true);
+                alumno.setActivo(ttb(rs.getInt("estado")));
                 
                 alumnos.add(alumno);
             } 
@@ -176,7 +177,7 @@ public class AlumnoData {
     }
     
     public List<Alumno> listarAlumnos(){
-        String sql="SELECT idAlumno, dni, apellido, nombre, fechaNAcimiento FROM alumno";
+        String sql="SELECT idAlumno, dni, apellido, nombre, fechaNAcimiento, estado FROM alumno";
         ArrayList<Alumno> alumnos =new ArrayList<>();
         try {
             PreparedStatement ps= con.prepareStatement(sql);
@@ -189,7 +190,7 @@ public class AlumnoData {
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
-                alumno.setActivo(true);
+                alumno.setActivo(rs.getBoolean("estado"));
                 
                 alumnos.add(alumno);
             } 
@@ -199,5 +200,12 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla alumno");
         }
         return alumnos;
+    }
+    public boolean ttb (int tiny){
+        if (tiny ==1){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
