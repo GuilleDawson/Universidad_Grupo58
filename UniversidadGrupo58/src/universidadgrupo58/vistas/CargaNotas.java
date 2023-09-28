@@ -202,7 +202,7 @@ public class CargaNotas extends javax.swing.JInternalFrame {
         InscripcionData ins = new InscripcionData();
         double nota;
         
-        //Corroborary actualiza todas las notas del alumno para evitar errores
+        //Corrobora y actualiza todas las notas del alumno para evitar errores
         for(int i = 0; i < ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).size(); i++){
             nota = Double.parseDouble(this.jTable1.getValueAt(i, 2).toString());
             

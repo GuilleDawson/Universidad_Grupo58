@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-09-2023 a las 20:09:12
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.1
+-- Tiempo de generación: 28-09-2023 a las 21:14:42
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `universidadulp58`
 --
-CREATE DATABASE IF NOT EXISTS `universidadulp58` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `universidadulp58`;
 
 -- --------------------------------------------------------
 
@@ -32,7 +30,7 @@ USE `universidadulp58`;
 CREATE TABLE `admin` (
   `admin` varchar(12) NOT NULL,
   `password` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `admin`
@@ -54,14 +52,14 @@ CREATE TABLE `alumno` (
   `nombre` varchar(100) NOT NULL,
   `fechaNacimiento` date NOT NULL,
   `estado` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `alumno`
 --
 
 INSERT INTO `alumno` (`idAlumno`, `dni`, `apellido`, `nombre`, `fechaNacimiento`, `estado`) VALUES
-(1, 121212, 'Luna', 'Jose Pedro', '1908-04-25', 1),
+(1, 121212, 'Luna', 'Jose Pedro', '1908-04-25', 0),
 (2, 35681886, 'Benitez', 'Walter', '1999-12-10', 1),
 (3, 31863250, 'Fernandez Tomadin', 'Carlos', '1985-09-10', 1),
 (4, 43642358, 'Peña', 'Rocio', '2013-09-12', 1),
@@ -75,23 +73,23 @@ INSERT INTO `alumno` (`idAlumno`, `dni`, `apellido`, `nombre`, `fechaNacimiento`
 
 CREATE TABLE `inscripcion` (
   `idInscripto` int(11) NOT NULL,
-  `nota` int(11) NOT NULL,
+  `nota` double NOT NULL,
   `idAlumno` int(11) NOT NULL,
   `idMateria` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `inscripcion`
 --
 
 INSERT INTO `inscripcion` (`idInscripto`, `nota`, `idAlumno`, `idMateria`) VALUES
-(1, 0, 6, 1),
-(3, 8, 1, 6),
-(4, 6, 1, 4),
-(5, 0, 1, 5),
-(6, 0, 1, 3),
-(7, 0, 6, 2),
-(8, 0, 6, 4),
+(1, 2.3, 6, 1),
+(3, 8.8, 1, 6),
+(4, 8.8, 1, 4),
+(5, 8.8, 1, 5),
+(6, 8.8, 1, 3),
+(7, 4.5, 6, 2),
+(8, 8, 6, 4),
 (9, 4, 4, 3),
 (10, 0, 4, 6),
 (11, 0, 4, 1);
@@ -107,7 +105,7 @@ CREATE TABLE `materia` (
   `nombre` varchar(100) NOT NULL,
   `año` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `materia`
@@ -120,9 +118,9 @@ INSERT INTO `materia` (`idMateria`, `nombre`, `año`, `estado`) VALUES
 (4, 'musica', 5, 1),
 (5, 'astrofísica', 9, 1),
 (6, 'Microbiología', 6, 1),
-(7, 'Taller', 3, 0),
-(8, 'Geografía', 2, 1),
-(9, 'matematicas II', 3, 0);
+(7, 'Taller', 3, 1),
+(8, 'Geografía', 2, 0),
+(9, 'matematicas II', 3, 1);
 
 --
 -- Índices para tablas volcadas
