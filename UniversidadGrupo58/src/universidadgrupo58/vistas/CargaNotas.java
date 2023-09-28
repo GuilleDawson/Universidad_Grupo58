@@ -220,7 +220,7 @@ public class CargaNotas extends javax.swing.JInternalFrame {
                 
                 if(!seActualizo){
                     seActualizo = true;
-                    JOptionPane.showMessageDialog(null, "¡Notas guardadas con éxito!");
+                    JOptionPane.showMessageDialog(null, "¡Notas actualizadas con éxito!");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "La nota ingresada es incorrecta");
