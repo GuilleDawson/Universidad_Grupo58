@@ -200,18 +200,30 @@ public class CargaNotas extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Declaración de variables
         InscripcionData ins = new InscripcionData();
-        double nota;
+        double nota = 0;
+        boolean seActualizo = false;
         
         //Corrobora y actualiza todas las notas del alumno para evitar errores
         for(int i = 0; i < ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).size(); i++){
-            nota = Double.parseDouble(this.jTable1.getValueAt(i, 2).toString());
+            //nota = Double.parseDouble(this.jTable1.getValueAt(i, 2).toString());
+            
+            try {
+                nota = Double.parseDouble(this.jTable1.getValueAt(i, 2).toString());
+            } catch (NumberFormatException e) {
+                nota = 11;
+            }
             
             //Verifica que la nota sea correcta
             //Si es así la guarda, de lo contrario envía un mensaje de error y no guarda la nota.
             if(nota <= 10 && nota >= 0){
                 ins.actualizarNota(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno(), ins.obtenerInscripcionesPorAlumno(alumnos.get(jComboBox1.getSelectedIndex()).getIdAlumno()).get(i).getMateria().getIdMateria(), nota);
+                
+                if(!seActualizo){
+                    seActualizo = true;
+                    JOptionPane.showMessageDialog(null, "¡Notas guardadas con éxito!");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Nota fuera de rango");
+                JOptionPane.showMessageDialog(null, "La nota ingresada es incorrecta");
             }
         }
         
